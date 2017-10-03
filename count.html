@@ -1,0 +1,32 @@
+/* testing sub count */
+<html>
+  <head>
+      <title>Live Subscriber Count</title>
+      <link rel="stylesheet" href="odometer-theme-default.css" />
+      <script src="odometer.js"></script>
+      <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+  </head>
+
+<script type="text/javascript">
+$(document).ready( function() {
+  var chanName = "";
+
+  loadChannel("UCXHyYBetgvqiN2KAuIsBUIg");
+  /* $('#odometer').text(2); */
+  function loadChannel(name) {
+    var url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id='+name+'&key=AIzaSyAi0ENoYMXiHcAPaiUGM_se7HWvSA6Kog8';
+    $.getJSON(url, function(data) {
+      $('#odometer').html(data.items[0].statistics.subscriberCount);
+    });
+  }
+});
+
+</script>
+
+  <body>
+    <center>
+      <div id="odometer" class="odometer">0</div>
+    </center>
+  </body>
+
+</html>
